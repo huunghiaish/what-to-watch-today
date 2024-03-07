@@ -32,4 +32,4 @@ docker build . -t registry.huunghianguyen.com/react-vite-boilerplate:1.0.0
 docker push registry.huunghianguyen.com/react-vite-boilerplate:1.0.0
 ```
 
-> Reference by @ShariqAnsari88 @TMDb
+> Reference by @ShariqAnsari88 @TMDb API
