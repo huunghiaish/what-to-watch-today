@@ -9,8 +9,7 @@ import useFetch from 'src/hooks/useFetch'
 
 import Img from 'src/components/lazyLoadImage/Img'
 import ContentWrapper from 'src/components/contentWrapper/ContentWrapper'
-import { fetchDataFromApi, findMovieYouMightLike } from 'src/utils/api'
-import { getRandomNumber } from 'src/utils/functions'
+import { findMovieYouMightLike, getNghiaRecommend } from 'src/utils/api'
 
 const HeroBanner = () => {
   const [background, setBackground] = useState('')
@@ -33,6 +32,11 @@ const HeroBanner = () => {
 
   const handleFindMovie = async () => {
     const result = await findMovieYouMightLike()
+    navigate(`/movie/${result || 379088}`)
+  }
+  
+  const handleNghiaRecommend = async () => {
+    const result = await getNghiaRecommend()
     navigate(`/movie/${result || 379088}`)
   }
 
@@ -72,7 +76,7 @@ const HeroBanner = () => {
             <button
               onClick={() => {
                 setSpinerOverlay(true)
-                handleFindMovie()
+                handleNghiaRecommend()
               }}
             >
               <div style={{ display: 'flex', justifyContent: 'center' }}>
