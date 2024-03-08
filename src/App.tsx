@@ -15,12 +15,13 @@ import PageNotFound from './pages/404/PageNotFound'
 
 function App() {
   const dispatch = useDispatch()
-  const { url } = useSelector((state) => state.home)
+  const { url } = useSelector((state: any) => state.home)
   console.log(url)
 
   useEffect(() => {
     fetchApiConfig()
     genresCall()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const fetchApiConfig = () => {
@@ -38,9 +39,9 @@ function App() {
   }
 
   const genresCall = async () => {
-    const promises = []
+    const promises: any[] = []
     const endPoints = ['tv', 'movie']
-    const allGenres = {}
+    const allGenres: any = {}
 
     endPoints.forEach((url) => {
       promises.push(fetchDataFromApi(`/genre/${url}/list`))
@@ -49,7 +50,7 @@ function App() {
     const data = await Promise.all(promises)
     console.log(data)
     data.map(({ genres }) => {
-      return genres.map((item) => (allGenres[item.id] = item))
+      return genres.map((item: { id: string | number }) => (allGenres[item.id] = item))
     })
 
     dispatch(getGenres(allGenres))

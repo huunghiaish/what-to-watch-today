@@ -1,27 +1,28 @@
-import { useEffect, useState } from "react";
-import { fetchDataFromApi } from "src/utils/api";
-const useFetch = (url) => {
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(null);
-    const [error, setError] = useState(null);
+import { useEffect, useState } from 'react'
+import { fetchDataFromApi } from 'src/utils/api'
+const useFetch = (url: string) => {
+  const [data, setData] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
-    useEffect(() => {
-        setLoading("loading...");
-        setData(null);
-        setError(null);
+  useEffect(() => {
+    setLoading(true)
+    setData(null)
+    setError('null')
 
-        fetchDataFromApi(url)
-            .then((res) => {
-                setLoading(false);
-                setData(res);
-            })
-            .catch((err) => {
-                setLoading(false);
-                setError("Something went wrong!");
-            });
-    }, [url]);
+    fetchDataFromApi(url)
+      .then((res) => {
+        setLoading(false)
+        setData(res)
+      })
+      .catch((err) => {
+        console.log(err)
+        setLoading(false)
+        setError('Something went wrong!')
+      })
+  }, [url])
 
-    return { data, loading, error };
-};
+  return { data, loading, error }
+}
 
-export default useFetch;
+export default useFetch

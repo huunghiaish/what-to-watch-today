@@ -22,6 +22,7 @@ const HeroBanner = () => {
   useEffect(() => {
     const bg = url.backdrop + data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path
     setBackground(bg)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data])
 
   const searchQueryHandler = (event) => {
@@ -34,7 +35,7 @@ const HeroBanner = () => {
     const result = await findMovieYouMightLike()
     navigate(`/movie/${result || 379088}`)
   }
-  
+
   const handleNghiaRecommend = async () => {
     const result = await getNghiaRecommend()
     navigate(`/movie/${result || 379088}`)
@@ -88,8 +89,10 @@ const HeroBanner = () => {
       </ContentWrapper>
       {spinerOverlay && (
         <div className='fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-50 overflow-hidden bg-gray-700 opacity-95 flex flex-col items-center justify-center'>
-          <div className="rounded-md h-14 w-14 border-4 border-t-4 border-red-700 bg-gradient-to-t from-red-700 via-rose-600 to-pink-500 animate-spin"></div>
-          <h2 className='text-center text-white mt-5 md:text-5xl font-semibold sm:text-lg'>I'm looking for a good movie for you...</h2>
+          <div className='rounded-md h-14 w-14 border-4 border-t-4 border-red-700 bg-gradient-to-t from-red-700 via-rose-600 to-pink-500 animate-spin'></div>
+          <h2 className='text-center text-white mt-5 md:text-5xl font-semibold sm:text-lg'>
+            I'm looking for a good movie for you...
+          </h2>
           <p className='text-center text-white mt-3 md:text-3xl sm:text-sm'>Wait a moment, please!</p>
         </div>
       )}
